@@ -4,7 +4,7 @@ import Navbar from './component/Navbar';
 import Text from './component/Text';
 import Alert from './component/Alert';
 import About from './component/About';
-import { Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [isChecked, setIsChecked] = useState(false);
@@ -25,10 +25,12 @@ function App() {
       <Navbar textutils="TextUtils" isChecked={isChecked} handleToggle={handleToggle} />
       {alert && <Alert type = {alert.type} msg = {alert.msg} />}
       <div className="container my-3">
-        <Routes>
-          <Route path="/" element={<Text heading="Enter your text to analyse" isChecked={isChecked} setAlert={setAlert} />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Text heading="Enter your text to analyse" isChecked={isChecked} setAlert={setAlert} />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </Router>
       </div>
     </>
   );
