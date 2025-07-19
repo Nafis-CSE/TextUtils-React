@@ -25,12 +25,11 @@ function App() {
       <Navbar textutils="TextUtils" isChecked={isChecked} handleToggle={handleToggle} />
       {alert && <Alert type = {alert.type} msg = {alert.msg} />}
       <div className="container my-3">
-        <Router>
+
           <Routes>
             <Route path="/" element={<Text heading="Enter your text to analyse" isChecked={isChecked} setAlert={setAlert} />} />
             <Route path="/about" element={<About />} />
           </Routes>
-        </Router>
       </div>
     </>
   );
