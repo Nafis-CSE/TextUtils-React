@@ -4,30 +4,25 @@ import Navbar from './component/Navbar';
 import Text from './component/Text';
 import Alert from './component/Alert';
 import About from './component/About';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [isChecked, setIsChecked] = useState(false);
   const [alert, setAlert] = useState<{ type: string; msg: string } | null>(null);
+  const [text,setText] = useState('');
+ 
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
-    document.body.style.backgroundColor = isChecked ? 'white' : 'black';
-    document.body.style.color = isChecked ? '#3618bbff' : 'white';
-    setAlert({ type: isChecked ? 'success' : 'dark', msg: isChecked ? 'Light Mode Enabled!' : 'Dark Mode Enabled!' });
-  };
   setTimeout(() => {
     setAlert(null);
   }, 2000);
 
   return (
     <>
-      <Navbar textutils="TextUtils" isChecked={isChecked} handleToggle={handleToggle} />
+      <Navbar textutils="TextUtils" setAlert={setAlert} />
       {alert && <Alert type = {alert.type} msg = {alert.msg} />}
       <div className="container my-3">
 
-          <Routes>
-            <Route path="/" element={<Text heading="Enter your text to analyse" isChecked={isChecked} setAlert={setAlert} />} />
+          <Routes >
+            <Route path="/" element={<Text heading="Enter your text to analyse" text={text} setText={setText} setAlert={setAlert} />} />
             <Route path="/about" element={<About />} />
           </Routes>
       </div>

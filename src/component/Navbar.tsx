@@ -1,42 +1,39 @@
 import React from 'react';
-import ToggleSwitch from './Switch';
 import { Link } from 'react-router-dom';
+import Themes from './Themes';
 
 type TextProps = {
   textutils: string;
-  isChecked: boolean;
-  handleToggle: () => void;
+  setAlert: (alert: { type: string; msg: string }) => void;
 };
-
-export default function Navbar({ textutils, isChecked, handleToggle }: TextProps) {
-  const style = () => {
-    return isChecked
-      ? { backgroundColor: '#d6dee7ff', color: '#061c33ff' }
-      : { backgroundColor: '#06305aff', color: '#f4ebebff' };
-  };
+let styles = {
+  color: '#d2cfdeff',
+  backgroundColor: '#2388ecff'
+};
+export default function Navbar({ textutils, setAlert }: TextProps) {
   return (
     <nav
       className="navbar navbar-expand-lg"
-      style={style()}
+      style={styles}
     >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/" style={style()}>
+        <Link className="navbar-brand text-white" to="/" >
           {textutils}
         </Link>
         <div className="collapse navbar-collapse" >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active text-decoration-none mx-2" aria-current="page" to="/"  style={style()}>
+              <Link className="nav-link active text-decoration-none text-white mx-2" aria-current="page" to="/" >
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active text-decoration-none mx-2" aria-current="page" to="/about"  style={style()}>
+              <Link className="nav-link active text-decoration-none text-white mx-2" aria-current="page" to="/about">
                 About
               </Link>
             </li>
           </ul>
-          <ToggleSwitch isChecked={isChecked} handleToggle={handleToggle} />
+          <Themes setAlert={setAlert} />
         </div>
       </div>
     </nav>
